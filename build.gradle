@@ -1,5 +1,21 @@
 plugins {
-    id 'java'
+    id 'application'
+    id 'java-library'
+}
+apply plugin : "java"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+ext {
+    javaMainClass = "org.pedidosya.kata.PeYaKataApplication"
+}
+
+application {
+    mainClassName = javaMainClass
 }
 
 group 'org.pedidosya.kata'
