@@ -15,7 +15,7 @@ public class HealthController {
     private static final Logger logger = LoggerFactory.getLogger(HealthController.class);
 
     @GetMapping
-    public ResponseEntity<String> getStatus() {
+    public ResponseEntity<Void> checkHealth() {
         logger.info("I'm healthy!");
 
         return new ResponseEntity<>(HttpStatus.OK);
