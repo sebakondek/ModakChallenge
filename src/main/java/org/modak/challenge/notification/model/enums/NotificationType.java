@@ -1,6 +1,6 @@
 package org.modak.challenge.notification.model.enums;
 
-import org.modak.challenge.exception.BadRequestException;
+import org.modak.challenge.exception.InvalidEnumException;
 
 public enum NotificationType {
     STATUS,
@@ -11,7 +11,7 @@ public enum NotificationType {
         try {
             return NotificationType.valueOf(value);
         } catch (IllegalArgumentException ex) {
-            throw new BadRequestException(
+            throw new InvalidEnumException(
                     String.format("Invalid notification type %s", value)
             );
         }

@@ -15,16 +15,12 @@ import java.util.Map;
 @Slf4j
 public class RateLimitServiceImpl implements RateLimitService {
 
-    private static final Map<NotificationType, NotificationValidator> VALIDATORS_MAP = new HashMap<>();
+    private final Map<NotificationType, NotificationValidator> VALIDATORS_MAP;
 
     public RateLimitServiceImpl(
-            @Qualifier("newsValidator") NotificationValidator newsValidator,
-            @Qualifier("statusValidator") NotificationValidator statusValidator,
-            @Qualifier("marketingValidator") NotificationValidator marketingValidator
+            @Qualifier("validatorsMap") Map<NotificationType, NotificationValidator> validatorsMap
     ) {
-        VALIDATORS_MAP.put(NotificationType.NEWS, newsValidator);
-        VALIDATORS_MAP.put(NotificationType.STATUS, statusValidator);
-        VALIDATORS_MAP.put(NotificationType.MARKETING, marketingValidator);
+        VALIDATORS_MAP = validatorsMap;
     }
 
     @Override
