@@ -1,7 +1,7 @@
-package org.pedidosya.kata.health.controller;
+package org.modak.challenge.health.controller;
 
 import org.junit.jupiter.api.Test;
-import org.pedidosya.kata.IntegrationTest;
+import org.modak.challenge.IntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 

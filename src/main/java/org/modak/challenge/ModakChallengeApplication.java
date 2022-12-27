@@ -1,11 +1,11 @@
-package org.pedidosya.kata;
+package org.modak.challenge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PeYaKataApplication {
+public class ModakChallengeApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PeYaKataApplication.class, args);
+        SpringApplication.run(ModakChallengeApplication.class, args);
     }
 }

@@ -1,4 +1,4 @@
-package org.pedidosya.kata.health.controller;
+package org.modak.challenge.health.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

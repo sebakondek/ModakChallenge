@@ -1,4 +1,4 @@
-package org.pedidosya.kata.health.controller;
+package org.modak.challenge.health.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

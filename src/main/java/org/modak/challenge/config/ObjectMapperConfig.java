@@ -1,4 +1,4 @@
-package org.pedidosya.kata.config;
+package org.modak.challenge.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;

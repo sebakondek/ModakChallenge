@@ -1,1 +1,1 @@
-# PeYa-Kata
+# Modak Challenge

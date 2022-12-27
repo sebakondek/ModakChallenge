@@ -1,4 +1,4 @@
-package org.pedidosya.kata.config;
+package org.modak.challenge.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
