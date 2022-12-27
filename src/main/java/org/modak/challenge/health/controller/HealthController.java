@@ -14,6 +14,10 @@ public class HealthController {
 
     private static final Logger logger = LoggerFactory.getLogger(HealthController.class);
 
+    /**
+     * Health check for container purposes
+     * @return
+     */
     @GetMapping
     public ResponseEntity<Void> checkHealth() {
         logger.info("I'm healthy!");

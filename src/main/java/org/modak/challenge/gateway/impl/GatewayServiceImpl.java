@@ -13,6 +13,11 @@ import org.springframework.stereotype.Service;
 public class GatewayServiceImpl implements GatewayService {
     private static final Logger LOGGER = LoggerFactory.getLogger(GatewayServiceImpl.class);
 
+    /**
+     * Gateway implementation that sends notifications to users
+     * @param userId
+     * @param message
+     */
     @Override
     public void send(Integer userId, String message) {
         LOGGER.info("Sending message '{}' to user {}", message, userId);

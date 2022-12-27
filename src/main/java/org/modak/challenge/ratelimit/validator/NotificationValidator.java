@@ -16,6 +16,13 @@ public abstract class NotificationValidator {
     private final ChronoUnit temporalUnit;
     private final long maxCountPerTimeWindow;
 
+    /**
+     * Common validation method for all
+     * NotificationValidator implementations
+     *
+     * @param userId
+     * @param type
+     */
     public void validate(Integer userId, NotificationType type) {
         LocalDateTime startDate = LocalDateTime.now().minus(timeUnit, temporalUnit);
 

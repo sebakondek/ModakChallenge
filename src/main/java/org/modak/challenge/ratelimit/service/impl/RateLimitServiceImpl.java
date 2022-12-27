@@ -8,7 +8,6 @@ import org.modak.challenge.ratelimit.validator.NotificationValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -23,6 +22,14 @@ public class RateLimitServiceImpl implements RateLimitService {
         VALIDATORS_MAP = validatorsMap;
     }
 
+    /**
+     * Checks if the injected validatorsMap has
+     * the NotificationType key implemented.
+     * In case it does, it validates the rate limit.
+     * In case it doesn't, throws exception
+     * @param userId
+     * @param type
+     */
     @Override
     public void checkRateLimit(Integer userId, NotificationType type) {
         if (VALIDATORS_MAP.containsKey(type)) {

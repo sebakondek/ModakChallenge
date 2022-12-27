@@ -1,6 +1,5 @@
 package org.modak.challenge.exception;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -29,7 +28,6 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, ex.getHttpStatus());
     }
 
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
@@ -44,13 +42,13 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<?> handleError(ConstraintViolationException ex) {
+    @ExceptionHandler(TooManyRequestsException.class)
+    public ResponseEntity<?> handleError(TooManyRequestsException ex) {
         logger.warn(ex.getMessage());
 
-        ErrorResponse response = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        ErrorResponse response = new ErrorResponse(ex.getMessage(), HttpStatus.TOO_MANY_REQUESTS);
 
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.TOO_MANY_REQUESTS);
     }
 
     @ExceptionHandler(Exception.class)
