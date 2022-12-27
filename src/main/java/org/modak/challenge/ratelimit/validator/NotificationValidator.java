@@ -25,7 +25,7 @@ public abstract class NotificationValidator {
         if (maxCountPerTimeWindow <= countResult) {
             throw new RateLimitException(
                     String.format("Rate limit of %s per %s %s was reached for %s type.",
-                            maxCountPerTimeWindow, timeUnit, temporalUnit, type.toString().toLowerCase())
+                            maxCountPerTimeWindow, timeUnit, temporalUnit, type)
             );
         }
     }

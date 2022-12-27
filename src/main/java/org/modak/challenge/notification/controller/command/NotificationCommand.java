@@ -19,7 +19,7 @@ public class NotificationCommand {
     public static NotificationCommand fromRequest(NotificationRequest request) {
         return new NotificationCommand(
                 request.getUserId(),
-                NotificationType.valueOf(request.getType().toUpperCase()),
+                NotificationType.getEnum(request.getType().toUpperCase()),
                 request.getMessage()
         );
     }

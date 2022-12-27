@@ -24,6 +24,6 @@ public class NotificationController {
 
         this.notificationService.send(command);
 
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

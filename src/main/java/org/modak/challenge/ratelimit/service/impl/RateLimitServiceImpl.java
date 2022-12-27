@@ -17,8 +17,14 @@ public class RateLimitServiceImpl implements RateLimitService {
 
     private static final Map<NotificationType, NotificationValidator> VALIDATORS_MAP = new HashMap<>();
 
-    public RateLimitServiceImpl(@Qualifier("newsValidator") NotificationValidator newsValidator) {
+    public RateLimitServiceImpl(
+            @Qualifier("newsValidator") NotificationValidator newsValidator,
+            @Qualifier("statusValidator") NotificationValidator statusValidator,
+            @Qualifier("marketingValidator") NotificationValidator marketingValidator
+    ) {
         VALIDATORS_MAP.put(NotificationType.NEWS, newsValidator);
+        VALIDATORS_MAP.put(NotificationType.STATUS, statusValidator);
+        VALIDATORS_MAP.put(NotificationType.MARKETING, marketingValidator);
     }
 
     @Override
@@ -27,7 +33,7 @@ public class RateLimitServiceImpl implements RateLimitService {
             VALIDATORS_MAP.get(type).validate(userId, type);
         } else {
             throw new ValidatorNotImplementedException(
-                    String.format("%s validator not yet implemented.", type.toString().toLowerCase())
+                    String.format("%s validator not yet implemented.", type)
             );
         }
     }
