@@ -6,9 +6,9 @@ spring:
   sql:
     init:
       mode: always
-    jpa:
-      hibernate:
-        ddl-auto: create-drop
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
 
 server:
   port: 8080
@@ -17,8 +17,8 @@ server:
 
 db:
   datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:testdb
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/modak?useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     maxLifetime: 420000

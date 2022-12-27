@@ -1,7 +1,7 @@
 package org.modak.challenge.notification.service;
 
-import org.modak.challenge.ratelimit.model.enums.NotificationType;
+import org.modak.challenge.notification.controller.command.NotificationCommand;
 
 public interface NotificationService {
-    void send(NotificationType type, Integer userId, String message);
+    void send(NotificationCommand command);
 }

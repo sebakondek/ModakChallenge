@@ -1,4 +1,4 @@
-package org.modak.challenge.ratelimit.model.enums;
+package org.modak.challenge.notification.model.enums;
 
 public enum NotificationType {
     STATUS,

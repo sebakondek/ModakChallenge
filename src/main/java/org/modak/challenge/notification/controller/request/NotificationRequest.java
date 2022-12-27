@@ -1,16 +1,16 @@
-package org.modak.challenge.ratelimit.model;
+package org.modak.challenge.notification.controller.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.modak.challenge.ratelimit.model.enums.NotificationType;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class Notification {
+public class NotificationRequest {
     private Integer userId;
-    private NotificationType type;
+    private String type;
+    private String message;
 }

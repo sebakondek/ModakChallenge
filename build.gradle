@@ -27,17 +27,23 @@ repositories {
 
 dependencies {
     def springVersion = '3.0.0'
+    def jupiterVersion = '5.9.0'
+    def lombokVersion = '1.18.24'
 
     implementation "org.springframework.boot:spring-boot-starter-data-rest:${springVersion}"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
     implementation "com.zaxxer:HikariCP:5.0.1"
-    implementation "org.projectlombok:lombok:1.18.24"
     implementation "com.h2database:h2:2.1.214"
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+
+    runtimeOnly "mysql:mysql-connector-java:8.0.31"
 
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
 
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.0"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
 
 test {
