@@ -9,6 +9,7 @@ import org.modak.challenge.notification.repository.NotificationRepository;
 import org.modak.challenge.notification.service.NotificationService;
 import org.modak.challenge.ratelimit.service.RateLimitService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -27,12 +28,13 @@ public class NotificationServiceImpl implements NotificationService {
      * Finally, persists the entity in the database.
      * @param command
      */
+    @Transactional
     @Override
     public void send(NotificationCommand command) {
         this.rateLimitService.checkRateLimit(command.getUserId(), command.getNotificationType());
 
-        this.gatewayService.send(command.getUserId(), command.getMessage());
-
         this.notificationRepository.save(Notification.fromCommand(command));
+
+        this.gatewayService.send(command.getUserId(), command.getMessage());
     }
 }

@@ -80,8 +80,8 @@ public class NotificationServiceTest {
 
         verify(rateLimitService, times(1))
                 .checkRateLimit(command.getUserId(), command.getNotificationType());
+        verify(notificationRepository, times(1)).save(Notification.fromCommand(command));
         verify(gatewayService, times(1)).send(command.getUserId(), command.getMessage());
-        verifyNoInteractions(notificationRepository);
     }
 
     @Test
@@ -103,8 +103,8 @@ public class NotificationServiceTest {
 
         verify(rateLimitService, times(1))
                 .checkRateLimit(command.getUserId(), command.getNotificationType());
-        verify(gatewayService, times(1)).send(command.getUserId(), command.getMessage());
         verify(notificationRepository, times(1)).save(Notification.fromCommand(command));
+        verifyNoInteractions(gatewayService);
     }
 
     @Test

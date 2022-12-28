@@ -8,6 +8,7 @@ import org.modak.challenge.exception.ErrorResponse;
 import org.modak.challenge.notification.model.Notification;
 import org.modak.challenge.notification.model.enums.NotificationType;
 import org.modak.challenge.notification.repository.NotificationRepository;
+import org.modak.challenge.notification.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,6 +31,9 @@ public class NotificationControllerIT {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private NotificationService notificationService;
 
     @Test
     void when_userId_is_null_should_throw_exception() throws Exception {
@@ -227,5 +231,18 @@ public class NotificationControllerIT {
         Assertions.assertEquals(1, notifications.get(1).getUserId());
         Assertions.assertEquals(NotificationType.STATUS, notifications.get(1).getType());
         Assertions.assertEquals("message2", notifications.get(1).getMessage());
+    }
+
+    @Test
+    void when_request_is_correct_and_limit_is_not_exceeded_but_gateway_fails_should_rollback_transaction() throws Exception {
+        // When
+        mvc.perform(post("/notify").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"user_id\":2,\"type\":\"status\",\"message\":\"message2\"}"))
+                .andExpect(status().isInternalServerError());
+
+        // Then
+        List<Notification> notifications = notificationRepository.findAll();
+
+        Assertions.assertEquals(0, notifications.size());
     }
 }

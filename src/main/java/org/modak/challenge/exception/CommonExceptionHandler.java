@@ -1,7 +1,6 @@
 package org.modak.challenge.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -14,14 +13,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Objects;
 
+@Slf4j
 @ControllerAdvice
 public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(CommonExceptionHandler.class);
-
     @ExceptionHandler(value = ModakChallengeGenericException.class)
     protected ResponseEntity<ErrorResponse> handleError(ModakChallengeGenericException ex) {
-        logger.error(ex.getMessage(), ex);
+        log.error(ex.getMessage(), ex);
 
         ErrorResponse response = new ErrorResponse(ex.getMessage(), ex.getHttpStatus());
 
@@ -35,7 +33,7 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
                 ex.getBindingResult().getFieldError().getDefaultMessage() :
                 "";
 
-        logger.warn(errorMessage);
+        log.warn(errorMessage);
 
         ErrorResponse response = new ErrorResponse(errorMessage, HttpStatus.BAD_REQUEST);
 
@@ -44,7 +42,7 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(TooManyRequestsException.class)
     public ResponseEntity<?> handleError(TooManyRequestsException ex) {
-        logger.warn(ex.getMessage());
+        log.warn(ex.getMessage());
 
         ErrorResponse response = new ErrorResponse(ex.getMessage(), HttpStatus.TOO_MANY_REQUESTS);
 
@@ -53,7 +51,7 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<?> handleError(Exception ex) {
-        logger.error(ex.getMessage(), ex);
+        log.error(ex.getMessage(), ex);
 
         ErrorResponse response = new ErrorResponse("Unexpected error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
 
